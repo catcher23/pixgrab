@@ -14,10 +14,10 @@
 //= require jquery_ujs
 //= require react
 //= require react_ujs
+//= require ReactRouter.min
 //= require components
 //= require flux
 //= require bootstrap
 //= require pixgrab
 //= require eventemitter
-//= require ReactRouter.min
 //= require_tree .

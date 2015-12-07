@@ -21,8 +21,7 @@ $(function () {
     });
     var routes = (
         <Route path="/" component={App}>
-          <IndexRoute component={Search}/>
-
+          <IndexRoute component={Index}/>
           </Route>
 
     );

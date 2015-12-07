@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#root'
-  resource :session, only: [:new, :create, :destroy]
+  get 'users/auth/instagram/callback', to: 'searches#create'
+  resource :searches, only: [:new, :create]
+  get '/auth/:provider/callback', to: 'searches#create'
 end
