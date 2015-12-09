@@ -14,9 +14,8 @@
         <ul className= "topic">
           { search.map(function (image) {
             return <li key={image.image}><a href={image.link} className='thumb'
-            data-toggle="lightbox" data-gallery="multiimages" date-title={'Created at: '+image.created_at}>
+            data-toggle="lightbox" data-gallery="multiimages" data-title={'Tagged on: '+image.created_time.slice(0,10)}>
             <img src = {image.image} className="img-responsive"/>
-
                 </a>
                   <br className = "clear" />
           </li>;

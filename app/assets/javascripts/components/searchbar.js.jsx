@@ -3,7 +3,7 @@ window.SearchBar = React.createClass({
   mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
   componentDidMount: function () {
-    $( ".loading" ).hide();
+
   },
 
   getInitialState: function () {
@@ -18,10 +18,7 @@ window.SearchBar = React.createClass({
 
   handleSubmit: function(event){
       event.preventDefault();
-      $( ".loading" ).show();
-        setTimeout(function(){
-            $( ".loading" ).hide();
-        }, 20000);
+
       var search = $.extend({}, this.state);
       ApiUtil.createSearch(search);
       this.setState({hashtag: "", from: "", to:""});
@@ -38,7 +35,7 @@ window.SearchBar = React.createClass({
         <input className="input-medium" type="date" placeholder="To" name="to" id="to" valueLink={this.linkState('to')}/>
         <button className="btn primary medium" type="submit">Submit</button>
       </form>
-        <button className="loading btn primary medium" type="" disabled = 'true' >Loading</button>
+
 
     </div>
     );
