@@ -4265,3 +4265,12 @@ a:visited {color:#000;}
    with position:fixed. Width, height, top and left speak
    for themselves. Background we set to 80% white with
    our animation centered, and no-repeating */
+   .loader {
+     position: fixed;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     background: transparent;
+     z-index: 9999;
+   }

@@ -5,6 +5,11 @@ var SearchStore = new Store(AppDispatcher);
 
 var _searches = {};
 var _search = {};
+var _loaded = true;
+
+var searchLoading = function () {
+  _loaded = !_loaded;
+};
 
 var resetSearches = function (searches) {
   _searches = searches;
@@ -42,6 +47,9 @@ SearchStore.__onDispatch = function (payload) {
       break;
     case SearchConstants.SEARCH_RECEIVED:
       resetSearch(payload.search);
+      break;
+    case SearchConstants.LOADING:
+      searchLoading();
       break;
   }
   SearchStore.__emitChange();

@@ -3,10 +3,14 @@ var React = require('react');
   module.exports = React.createClass({
 
     render: function () {
-      var search = this.props.search || [];
-      if (search === this.props.search) {
+      var search = [];
+      if (this.props.search) {
+      search = this.props.search.query || [];
+    
+      if (search === this.props.search.query) {
         search = JSON.parse(search);
       }
+    }
 
       return (
         <div className="photo">

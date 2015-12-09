@@ -8,4 +8,10 @@ module.exports = {
       search: search
     });
   },
+
+  loading: function(){
+    Dispatcher.dispatch({
+      actionType: SearchConstants.LOADING,
+    });
+  }
 };

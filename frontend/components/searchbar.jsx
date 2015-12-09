@@ -1,5 +1,7 @@
 var React = require('react');
 var ApiUtil = require('../util/api_util.js');
+var ApiActions = require('../actions/api_actions.js');
+var Index = require('./index.jsx');
 var History = require('react-router').History;
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
 
@@ -23,9 +25,9 @@ module.exports = React.createClass({
 
   handleSubmit: function(event){
       event.preventDefault();
-
       var search = $.extend({}, this.state);
       ApiUtil.createSearch(search);
+      ApiActions.loading();
       this.setState({hashtag: "", from: "", to:""});
       this.refresh();
     },
