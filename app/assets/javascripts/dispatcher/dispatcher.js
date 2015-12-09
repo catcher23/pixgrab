@@ -1,1 +1,0 @@
-AppDispatcher = new Flux.Dispatcher();

@@ -17,9 +17,7 @@
 //= require react
 //= require react_ujs
 //= require ReactRouter.min
-//= require components
-//= require react-loader
 //= require flux
-//= require pixgrab
 //= require eventemitter
+//= require bundle
 //= require_tree .
