@@ -15,7 +15,6 @@ createSearch: function (search) {
 fetchSingleSearch: function (id) {
   $.ajax({
     url: "/searches" + id,
-
     success: function (search) {
       ApiActions.receiveSingleHuman(search);
     }

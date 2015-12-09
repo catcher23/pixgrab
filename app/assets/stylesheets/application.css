@@ -2546,8 +2546,9 @@
    top: 50%;
    left: 50%;
    z-index: 11000;
-   width: 560px;
-   margin: -250px 0 0 -280px;
+   width: 540px;
+   height: 585px;
+   margin: -310px 0 0 -275px;
    background-color: #ffffff;
    border: 1px solid #999;
    border: 1px solid rgba(0, 0, 0, 0.3);
@@ -4065,7 +4066,7 @@
    height: 100%;
    width: 100%;
    position: absolute;
-   
+
    background: -webkit-linear-gradient(bottom, rgba(255,0,0,0) 70%, black); /* For Safari 5.1 to 6.0 */
    background: -o-linear-gradient(bottom, rgba(255,0,0,0) 70%, black); /* For Opera 11.1 to 12.0 */
    background: -moz-linear-gradient(bottom, rgba(255,0,0,0) 70%, black); /* For Firefox 3.6 to 15 */
@@ -4198,3 +4199,69 @@ a:visited {color:#000;}
 .photo ul.topic li a:hover ul li a:hover img,
 .photo ul.topic li:hover ul li a:hover img
 {position:absolute; left:-50px; top:-32px; width:200px; height:150px; border-color:#fff;}
+
+.loading {
+  margin-top: 8px;
+  background-color:green;
+}
+
+.ekko-lightbox-container {
+  position: relative;
+}
+
+.ekko-lightbox-nav-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+}
+
+.ekko-lightbox-nav-overlay a {
+  z-index: 100;
+  display: block;
+  width: 49%;
+  height: 100%;
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+  opacity: 0;
+  filter: dropshadow(color=#000000, offx=2, offy=2);
+  -webkit-transition: opacity 0.5s;
+     -moz-transition: opacity 0.5s;
+       -o-transition: opacity 0.5s;
+          transition: opacity 0.5s;
+}
+
+.ekko-lightbox-nav-overlay a:empty {
+  width: 49%;
+}
+
+.ekko-lightbox a:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.ekko-lightbox .glyphicon-chevron-left {
+  left: 0;
+  float: left;
+  padding-left: 15px;
+  text-align: left;
+}
+
+.ekko-lightbox .glyphicon-chevron-right {
+  right: 0;
+  float: right;
+  padding-right: 15px;
+  text-align: right;
+}
+
+.ekko-lightbox .modal-footer {
+  text-align: left;
+}
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */

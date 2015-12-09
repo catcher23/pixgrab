@@ -13,9 +13,7 @@
   };
 
   var resetSearch = function (search) {
-
     _search = search;
-
   };
 
   window.SearchStore = $.extend({}, EventEmitter.prototype, {

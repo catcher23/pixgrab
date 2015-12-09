@@ -5,9 +5,26 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
+  <%= render partial: "lightbox" %>
 </head>
 <body>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+    <div class="alert-message error">
+      <a class="close" href="#">×</a>
+      <%= error %>
+    </div>
+    <% end %>
+  <% end %>
 
+  <% if flash[:notices] %>
+    <% flash[:notices].each do |notice| %>
+    <div class="alert-message success">
+      <a class="close" href="#">×</a>
+      <%= notice %>
+    </div>
+    <% end %>
+  <% end %>
 <%= yield %>
 
 </body>

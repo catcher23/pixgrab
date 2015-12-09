@@ -2,7 +2,13 @@ window.SearchBar = React.createClass({
 
   mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
+  componentDidMount: function () {
+    $( ".loading" ).hide();
+  },
+
   getInitialState: function () {
+
+
       return { hashtag: "", from: "", to:""  };
     },
 
@@ -12,6 +18,10 @@ window.SearchBar = React.createClass({
 
   handleSubmit: function(event){
       event.preventDefault();
+      $( ".loading" ).show();
+        setTimeout(function(){
+            $( ".loading" ).hide();
+        }, 20000);
       var search = $.extend({}, this.state);
       ApiUtil.createSearch(search);
       this.setState({hashtag: "", from: "", to:""});
@@ -21,12 +31,14 @@ window.SearchBar = React.createClass({
 
     return (
       <div>
+      <button className='loading'></button>
       <form action="searches" method = "post" className="pull-right" onSubmit={this.handleSubmit}>
         <input className="input-medium" type="text" placeholder="Hashtag" name="hashtag" id="hashtag" valueLink={this.linkState('hashtag')}/>
         <input className="input-medium" type="date" placeholder="From" name="from" id="from" valueLink={this.linkState('from')}/>
         <input className="input-medium" type="date" placeholder="To" name="to" id="to" valueLink={this.linkState('to')}/>
-        <button className="btn primary medium" type="submit">Search</button>
+        <button className="btn primary medium" type="submit">Submit</button>
       </form>
+        <button className="loading btn primary medium" type="" disabled = 'true' >Loading</button>
 
     </div>
     );

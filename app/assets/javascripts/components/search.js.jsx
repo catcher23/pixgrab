@@ -13,8 +13,10 @@
         <div className="photo">
         <ul className= "topic">
           { search.map(function (image) {
-            return <li key={image}><a href={image} className='thumb'>
-              <img src = {image} />
+            return <li key={image.image}><a href={image.link} className='thumb'
+            data-toggle="lightbox" data-gallery="multiimages" date-title={'Created at: '+image.created_at}>
+            <img src = {image.image} className="img-responsive"/>
+
                 </a>
                   <br className = "clear" />
           </li>;

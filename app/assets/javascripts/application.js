@@ -12,12 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
+//= require bootstrap-lightbox
 //= require react
 //= require react_ujs
 //= require ReactRouter.min
 //= require components
+//= require react-loader
 //= require flux
-//= require bootstrap
 //= require pixgrab
 //= require eventemitter
 //= require_tree .

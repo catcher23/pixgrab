@@ -3,7 +3,6 @@ window.ApiActions = {
     AppDispatcher.dispatch({
       actionType: SearchConstants.SEARCH_RECEIVED,
       search: search
-
     });
   },
 };
