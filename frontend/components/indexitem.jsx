@@ -19,14 +19,22 @@ module.exports = React.createClass({
   },
 
   handleDelete: function () {
+    var that = this;
     search_id = this.props.search.id;
     ApiActions.loading();
     setTimeout(function () {
       ApiUtil.deleteSearch(search_id);
     }, 10);
     setTimeout(function () {
-    ApiActions.loading();
-  }, 20);
+      ApiActions.loading();
+    }, 20);
+    setTimeout(function () {
+    if (typeof that.props.albumView === 'function') {
+           that.props.albumView();
+      }
+    }, 30);
+
+
   },
   render: function () {
 

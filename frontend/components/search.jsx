@@ -53,7 +53,7 @@ var SearchIndexItem = require('./indexItem.jsx');
 
           {all_searches.map(function (search) {
             return <SearchIndexItem key={search.id} search={search}
-                    all_searches={all_searches} pixView = {that.pixView}/>;
+                    all_searches={all_searches} albumView = {that.albumView}/>;
               })
             })}
         </ul>

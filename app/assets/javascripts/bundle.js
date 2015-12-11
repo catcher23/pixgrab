@@ -30994,7 +30994,7 @@
 	        { className: 'topic albums' },
 	        all_searches.map(function (search) {
 	          return React.createElement(SearchIndexItem, { key: search.id, search: search,
-	            all_searches: all_searches, pixView: that.pixView });
+	            all_searches: all_searches, albumView: that.albumView });
 	        }),
 	        ')}'
 	      ),
@@ -31028,6 +31028,7 @@
 	  },
 
 	  handleDelete: function () {
+	    var that = this;
 	    search_id = this.props.search.id;
 	    ApiActions.loading();
 	    setTimeout(function () {
@@ -31036,6 +31037,11 @@
 	    setTimeout(function () {
 	      ApiActions.loading();
 	    }, 20);
+	    setTimeout(function () {
+	      if (typeof that.props.albumView === 'function') {
+	        that.props.albumView();
+	      }
+	    }, 30);
 	  },
 	  render: function () {
 
