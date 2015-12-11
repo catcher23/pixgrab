@@ -25,9 +25,11 @@ module.exports = React.createClass({
   handleSubmit: function(event){
       var that = this;
       event.preventDefault();
+  
       if (this.state.hashtag.length === 0 ||
          this.state.from.length === 0 ||
-         this.state.to.length === 0) {
+         this.state.to.length === 0  ||
+         this.state.from > this.state.to) {
       $( ".loading" ).show();
            setTimeout(function(){
                $( ".loading" ).fadeOut("linear");
