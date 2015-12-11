@@ -4375,13 +4375,12 @@ a:visited {color:#000;}
 }
 
 .logout{
-  margin-top: 0px;
-  font-size: 10px;
+  margin-top: -1px;
+  font-size: 9px;
 
 
 }
 
 .signin{
-  margin-top:5px;
-  padding-top: 3px;
+  transform: translateY(4px)
 }
