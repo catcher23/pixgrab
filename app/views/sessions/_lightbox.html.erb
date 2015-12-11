@@ -6,6 +6,8 @@
 				$(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
 					event.preventDefault();
 					return $(this).ekkoLightbox({
+						always_show_close: true,
+            gallery_parent_selector: '.gallery',
 						onShown: function() {
 						},
 						onNavigate: function(direction, itemIndex) {
@@ -29,6 +31,8 @@
 				$(document).delegate('*[data-gallery="navigateTo"]', 'click', function(event) {
 					event.preventDefault();
 					return $(this).ekkoLightbox({
+						always_show_close: true,
+            gallery_parent_selector: '.gallery',
 						onShown: function() {
 							var lb = this;
 							$(lb.modal_content).on('click', '.modal-footer a', function(e) {

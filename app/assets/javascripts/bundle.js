@@ -23965,8 +23965,8 @@
 	var SearchStore = __webpack_require__(208);
 	var ApiUtil = __webpack_require__(231);
 	var Search = __webpack_require__(233);
-	var NavBar = __webpack_require__(234);
-	var Loader = __webpack_require__(240);
+	var NavBar = __webpack_require__(235);
+	var Loader = __webpack_require__(241);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -23998,7 +23998,6 @@
 	  },
 
 	  albumViewHandler: function () {
-
 	    this.refs['search'].albumView();
 	  },
 
@@ -30923,14 +30922,19 @@
 
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(231);
+	var SearchIndexItem = __webpack_require__(234);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  componentDidMount: function () {},
+	  componentDidMount: function () {
+	    $(".albums").hide();
+	  },
+
 	  albumView: function () {
 	    $(".albums").fadeIn("linear");
 	    $(".pix").fadeOut("linear");
 	  },
+
 	  pixView: function () {
 	    $(".albums").fadeOut("linear");
 	    $(".pix").fadeIn("linear");
@@ -30944,6 +30948,7 @@
 	      if (this.props.searchObject.search !== null) {
 	        search = JSON.parse(this.props.searchObject.search.query);
 	        all_searches = this.props.searchObject.all_searches;
+	        var hashtag = this.props.searchObject.search.hashtag;
 	      } else {
 	        all_searches = this.props.searchObject.all_searches;
 	      }
@@ -30951,7 +30956,7 @@
 	      ApiUtil.retrieveSearches(CURRENT_USER_ID);
 	      ApiUtil.retrieveSearches(CURRENT_USER_ID);
 	    }
-
+	    var that = this;
 	    return React.createElement(
 	      'div',
 	      { className: 'photo' },
@@ -30967,7 +30972,7 @@
 	              { href: image.link, className: 'thumb',
 	                'data-toggle': 'lightbox',
 	                'data-gallery': 'multiimages',
-	                'data-title': 'Tagged on: ' + image.created_time.slice(0, 10) },
+	                'data-title': 'Tagged on: ' + image.created_time.slice(0, 10) + ' - Tag: ' + hashtag },
 	              React.createElement('img', { src: image.image, className: 'img-responsive' })
 	            ),
 	            React.createElement('br', { className: 'clear' })
@@ -30978,43 +30983,10 @@
 	        'ul',
 	        { className: 'topic albums' },
 	        all_searches.map(function (search) {
-	          firstSearch = JSON.parse(search.query)[0];
-	          secondSearch = JSON.parse(search.query)[1];
-	          return React.createElement(
-	            'li',
-	            { key: search.id },
-	            React.createElement(
-	              'div',
-	              { className: 'col-md-offset-2 col-md-8' },
-	              React.createElement(
-	                'div',
-	                { className: 'row' },
-	                React.createElement(
-	                  'a',
-	                  { href: firstSearch.link, className: 'thumb2 col-sm-4',
-	                    'data-toggle': 'lightbox',
-	                    'data-gallery': 'multiimages',
-	                    'data-title': 'Tagged on: ' + firstSearch.created_time.slice(0, 10) },
-	                  React.createElement('img', { src: firstSearch.image, className: 'img-responsive' })
-	                ),
-	                React.createElement(
-	                  'a',
-	                  { href: secondSearch.link, className: 'thumb2 col-sm-4',
-	                    'data-toggle': 'lightbox',
-	                    'data-gallery': 'multiimages',
-	                    'data-title': 'Tagged on: ' + secondSearch.created_time.slice(0, 10) },
-	                  React.createElement('img', { src: secondSearch.image, className: 'img-responsive' })
-	                ),
-	                React.createElement('br', { className: 'clear' }),
-	                React.createElement(
-	                  'div',
-	                  { className: 'caption' },
-	                  'Album # ' + search.id
-	                )
-	              )
-	            )
-	          );
-	        })
+	          return React.createElement(SearchIndexItem, { key: search.id, search: search,
+	            all_searches: all_searches, pixView: that.pixView });
+	        }),
+	        ')}'
 	      ),
 	      React.createElement('br', { className: 'clear' })
 	    );
@@ -31026,7 +30998,51 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var SearchBar = __webpack_require__(235);
+	var ApiActions = __webpack_require__(232);
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  showDetail: function () {
+	    var that = this;
+	    var searchObj = { search: this.props.search,
+	      all_searches: this.props.all_searches };
+
+	    ApiActions.loading();
+	    setTimeout(function () {
+	      ApiActions.receiveSearch(searchObj);
+	      if (typeof that.props.pixView === 'function') {
+	        that.props.pixView();
+	      }
+	    }, 10);
+	  },
+
+	  render: function () {
+
+	    var search = JSON.parse(this.props.search.query);
+	    return React.createElement(
+	      'li',
+	      { onClick: this.showDetail },
+	      React.createElement(
+	        'div',
+	        { className: 'thumb2' },
+	        React.createElement('img', { src: search[0].image })
+	      ),
+	      React.createElement('br', { className: 'clear' }),
+	      React.createElement(
+	        'div',
+	        { className: 'caption' },
+	        'Album # ' + this.props.search.id
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var SearchBar = __webpack_require__(236);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -31038,7 +31054,6 @@
 	    }
 	  },
 	  handlePixClick: function () {
-
 	    if (typeof this.props.pixView === 'function') {
 	      this.props.pixView();
 	    }
@@ -31084,7 +31099,7 @@
 	              )
 	            )
 	          ),
-	          React.createElement(SearchBar, null)
+	          React.createElement(SearchBar, { pixView: this.handlePixClick })
 	        )
 	      )
 	    );
@@ -31092,7 +31107,7 @@
 	});
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -31101,7 +31116,7 @@
 	var Index = __webpack_require__(207);
 	var Search = __webpack_require__(233);
 	var History = __webpack_require__(159).History;
-	var LinkedStateMixin = __webpack_require__(236);
+	var LinkedStateMixin = __webpack_require__(237);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -31121,7 +31136,7 @@
 	  },
 
 	  handleSubmit: function (event) {
-
+	    var that = this;
 	    event.preventDefault();
 	    if (this.state.hashtag.length === 0 || this.state.from.length === 0 || this.state.to.length === 0) {
 	      $(".loading").show();
@@ -31132,6 +31147,7 @@
 	      var search = $.extend({}, this.state, { user_id: CURRENT_USER_ID });
 	      ApiUtil.createSearch(search);
 	      ApiActions.loading();
+
 	      this.setState({ hashtag: "", from: "", to: "" });
 	      this.refresh();
 	    }
@@ -31176,13 +31192,13 @@
 	});
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(237);
+	module.exports = __webpack_require__(238);
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31199,8 +31215,8 @@
 
 	'use strict';
 
-	var ReactLink = __webpack_require__(238);
-	var ReactStateSetters = __webpack_require__(239);
+	var ReactLink = __webpack_require__(239);
+	var ReactStateSetters = __webpack_require__(240);
 
 	/**
 	 * A simple mixin around ReactLink.forState().
@@ -31223,7 +31239,7 @@
 	module.exports = LinkedStateMixin;
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31297,7 +31313,7 @@
 	module.exports = ReactLink;
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports) {
 
 	/**
@@ -31406,13 +31422,13 @@
 	module.exports = ReactStateSetters;
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
 
 	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(158), __webpack_require__(241)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(158), __webpack_require__(242)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if (typeof module === 'object' && typeof module.exports === 'object') {
 	    module.exports = factory(require('react'), require('react-dom'), require('spin.js'));
 	  } else {
@@ -31520,7 +31536,7 @@
 
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**

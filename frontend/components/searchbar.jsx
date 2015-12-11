@@ -23,7 +23,7 @@ module.exports = React.createClass({
   },
 
   handleSubmit: function(event){
-
+      var that = this;
       event.preventDefault();
       if (this.state.hashtag.length === 0 ||
          this.state.from.length === 0 ||
@@ -36,6 +36,7 @@ module.exports = React.createClass({
       var search = $.extend({}, this.state, {user_id: CURRENT_USER_ID});
       ApiUtil.createSearch(search);
       ApiActions.loading();
+
       this.setState({hashtag: "", from: "", to:""});
       this.refresh();
     }

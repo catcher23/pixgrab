@@ -12,7 +12,6 @@ module.exports = React.createClass({
       }
     },
   handlePixClick: function() {
-
     if (typeof this.props.pixView === 'function') {
            this.props.pixView();
       }
@@ -26,9 +25,8 @@ module.exports = React.createClass({
               <ul className="nav">
               <li><button className="btn primary medium" onClick={this.handleAlbumsClick}>My Searches</button></li>
               <li><button className="btn primary medium" onClick={this.handlePixClick}>Current Search</button></li>
-
               </ul>
-            <SearchBar />
+            <SearchBar pixView = {this.handlePixClick} />
             </div>
           </div>
         </div>

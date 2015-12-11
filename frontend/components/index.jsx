@@ -25,24 +25,22 @@ module.exports = React.createClass({
     this.onSuccess();
   },
 
-    onSuccess: function (profile) {
-      this.setState({loaded: true });
-    },
+  onSuccess: function (profile) {
+    this.setState({loaded: true });
+  },
 
   componentWillUnmount: function () {
     this.searchListener.remove();
   },
 
   albumViewHandler: function() {
-
     this.refs['search'].albumView();
   },
 
   pixViewHandler: function() {
-
+  
     this.refs['search'].pixView();
   },
-
 
   render: function() {
 
