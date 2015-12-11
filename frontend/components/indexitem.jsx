@@ -21,7 +21,7 @@ module.exports = React.createClass({
   handleDelete: function () {
     var that = this;
     search_id = this.props.search.id;
-    ApiActions.loading();
+    
     setTimeout(function () {
       ApiUtil.deleteSearch(search_id);
     }, 10);

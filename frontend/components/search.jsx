@@ -7,6 +7,7 @@ var SearchIndexItem = require('./indexItem.jsx');
     },
 
     albumView: function () {
+      debugger;
       $( ".albums" ).fadeIn("linear");
       $( ".pix" ).fadeOut("linear");
     },

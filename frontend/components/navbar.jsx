@@ -1,5 +1,6 @@
 var React = require('react');
 var SearchBar = require('./searchbar.jsx');
+var ApiUtil = require('../util/api_util.js');
 
 
 module.exports = React.createClass({

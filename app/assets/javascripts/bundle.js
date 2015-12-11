@@ -30941,6 +30941,7 @@
 	  },
 
 	  albumView: function () {
+	    debugger;
 	    $(".albums").fadeIn("linear");
 	    $(".pix").fadeOut("linear");
 	  },
@@ -31030,7 +31031,7 @@
 	  handleDelete: function () {
 	    var that = this;
 	    search_id = this.props.search.id;
-	    ApiActions.loading();
+
 	    setTimeout(function () {
 	      ApiUtil.deleteSearch(search_id);
 	    }, 10);
@@ -31075,6 +31076,7 @@
 
 	var React = __webpack_require__(1);
 	var SearchBar = __webpack_require__(236);
+	var ApiUtil = __webpack_require__(231);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
