@@ -30941,7 +30941,6 @@
 	  },
 
 	  albumView: function () {
-	    debugger;
 	    $(".albums").fadeIn("linear");
 	    $(".pix").fadeOut("linear");
 	  },
@@ -30968,6 +30967,7 @@
 	      ApiUtil.retrieveSearches(CURRENT_USER_ID);
 	    }
 	    var that = this;
+	    var albumCounter = 0;
 	    return React.createElement(
 	      'div',
 	      { className: 'photo' },
@@ -30994,8 +30994,10 @@
 	        'ul',
 	        { className: 'topic albums' },
 	        all_searches.map(function (search) {
+	          albumCounter += 1;
 	          return React.createElement(SearchIndexItem, { key: search.id, search: search,
-	            all_searches: all_searches, albumView: that.albumView });
+	            all_searches: all_searches, albumView: that.albumView,
+	            albumCounter: albumCounter });
 	        }),
 	        ')}'
 	      ),
@@ -31014,6 +31016,10 @@
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
+	  componentDidMount: function () {
+	    $(".deleted").hide();
+	  },
+
 	  showDetail: function () {
 	    var that = this;
 	    var searchObj = { search: this.props.search,
@@ -31031,6 +31037,11 @@
 	  handleDelete: function () {
 	    var that = this;
 	    search_id = this.props.search.id;
+
+	    $(".deleted").show();
+	    setTimeout(function () {
+	      $(".deleted").fadeOut("linear");
+	    }, 2000);
 
 	    setTimeout(function () {
 	      ApiUtil.deleteSearch(search_id);
@@ -31059,12 +31070,17 @@
 	      React.createElement(
 	        'div',
 	        { className: 'caption' },
-	        'Album # ' + this.props.search.id
+	        'Album # ' + this.props.albumCounter
 	      ),
 	      React.createElement(
 	        'button',
 	        { className: 'btn primary small', onClick: this.handleDelete },
 	        'Delete'
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'deleted' },
+	        'Album Deleted'
 	      )
 	    );
 	  }

@@ -3,6 +3,10 @@ var ApiActions = require('../actions/api_actions.js');
 var ApiUtil = require('../util/api_util.js');
 module.exports = React.createClass({
 
+  componentDidMount: function () {
+    $( ".deleted" ).hide();
+  },
+
   showDetail: function () {
     var that = this;
     var searchObj = {search: this.props.search,
@@ -14,14 +18,18 @@ module.exports = React.createClass({
       if (typeof that.props.pixView === 'function') {
              that.props.pixView();
         }
-    }, 10);
-
+      }, 10);
   },
 
   handleDelete: function () {
     var that = this;
     search_id = this.props.search.id;
-    
+
+    $( ".deleted" ).show();
+         setTimeout(function(){
+             $( ".deleted" ).fadeOut("linear");
+      }, 2000);
+
     setTimeout(function () {
       ApiUtil.deleteSearch(search_id);
     }, 10);
@@ -33,8 +41,6 @@ module.exports = React.createClass({
            that.props.albumView();
       }
     }, 30);
-
-
   },
   render: function () {
 
@@ -46,9 +52,10 @@ module.exports = React.createClass({
         </div>
         <br className = "clear" />
         <div className = 'caption'>
-        {'Album # '+ this.props.search.id}
+        {'Album # '+ this.props.albumCounter}
         </div>
         <button className="btn primary small" onClick={this.handleDelete}>Delete</button>
+        <div className='deleted'>Album Deleted</div>
       </li>
     );
   }

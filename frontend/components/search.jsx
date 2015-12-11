@@ -7,7 +7,6 @@ var SearchIndexItem = require('./indexItem.jsx');
     },
 
     albumView: function () {
-      debugger;
       $( ".albums" ).fadeIn("linear");
       $( ".pix" ).fadeOut("linear");
     },
@@ -34,6 +33,7 @@ var SearchIndexItem = require('./indexItem.jsx');
         ApiUtil.retrieveSearches(CURRENT_USER_ID);
       }
       var that = this;
+      var albumCounter = 0;
       return (
         <div className="photo">
 
@@ -53,8 +53,10 @@ var SearchIndexItem = require('./indexItem.jsx');
         <ul className= "topic albums">
 
           {all_searches.map(function (search) {
+            albumCounter += 1;
             return <SearchIndexItem key={search.id} search={search}
-                    all_searches={all_searches} albumView = {that.albumView}/>;
+                    all_searches={all_searches} albumView = {that.albumView}
+                    albumCounter = {albumCounter}/>;
               })
             })}
         </ul>
