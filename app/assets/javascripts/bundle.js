@@ -31213,7 +31213,7 @@
 	        React.createElement('input', { className: 'input-medium inputmids', type: 'date', placeholder: 'To', name: 'to', id: 'to', valueLink: this.linkState('to') }),
 	        React.createElement(
 	          'button',
-	          { className: 'btn primary medium', type: 'submit' },
+	          { className: 'btn primary medium buttonmid', type: 'submit' },
 	          'Search'
 	        )
 	      ),

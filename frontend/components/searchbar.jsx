@@ -51,7 +51,7 @@ module.exports = React.createClass({
         <input className="input-medium inputmids" type="text" placeholder="Hashtag" name="hashtag" id="hashtag" valueLink={this.linkState('hashtag')}/>
         <input className="input-medium inputmids" type="date" placeholder="From" name="from" id="from" valueLink={this.linkState('from')}/>
         <input className="input-medium inputmids" type="date" placeholder="To" name="to" id="to" valueLink={this.linkState('to')}/>
-        <button className="btn primary medium" type="submit">Search</button>
+        <button className="btn primary medium buttonmid" type="submit">Search</button>
       </form>
        <div className='loading'>Please fill out all fields</div>
     </div>
