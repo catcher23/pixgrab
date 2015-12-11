@@ -12,6 +12,7 @@ module.exports = React.createClass({
 
   componentDidMount: function () {
     $( ".loading" ).hide();
+    $( ".startdate" ).hide();
   },
 
   getInitialState: function () {
@@ -25,15 +26,19 @@ module.exports = React.createClass({
   handleSubmit: function(event){
       var that = this;
       event.preventDefault();
-  
+
       if (this.state.hashtag.length === 0 ||
          this.state.from.length === 0 ||
-         this.state.to.length === 0  ||
-         this.state.from > this.state.to) {
+         this.state.to.length === 0 ) {
       $( ".loading" ).show();
            setTimeout(function(){
                $( ".loading" ).fadeOut("linear");
         }, 2000);
+     } else if (this.state.from > this.state.to) {
+       $( ".startdate" ).show();
+            setTimeout(function(){
+                $( ".startdate" ).fadeOut("linear");
+         }, 2000);
      } else {
       var search = $.extend({}, this.state, {user_id: CURRENT_USER_ID});
       ApiUtil.createSearch(search);
@@ -56,6 +61,7 @@ module.exports = React.createClass({
         <button className="btn primary medium buttonmid" type="submit">Search</button>
       </form>
        <div className='loading'>Please fill out all fields</div>
+       <div className='startdate'>Start date must be before end date</div>
     </div>
 
     );

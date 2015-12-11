@@ -7,7 +7,54 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
-  <%= render partial: "lightbox" %>
+
+<script type="text/javascript">
+	$(document).ready(function ($) {
+
+		// delegate calls to data-toggle="lightbox"
+		$(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+			event.preventDefault();
+			return $(this).ekkoLightbox({
+				always_show_close: true,
+        gallery_parent_selector: '.gallery',
+				onShown: function() {
+				},
+				onNavigate: function(direction, itemIndex) {
+					if (window.console) {
+						return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+					}
+				}
+			});
+		});
+
+		//Programatically call
+		$('#open-image').click(function (e) {
+			e.preventDefault();
+			$(this).ekkoLightbox();
+		});
+		$('#open-youtube').click(function (e) {
+			e.preventDefault();
+			$(this).ekkoLightbox();
+		});
+
+		$(document).delegate('*[data-gallery="navigateTo"]', 'click', function(event) {
+			event.preventDefault();
+			return $(this).ekkoLightbox({
+				always_show_close: true,
+        gallery_parent_selector: '.gallery',
+				onShown: function() {
+					var lb = this;
+					$(lb.modal_content).on('click', '.modal-footer a', function(e) {
+						e.preventDefault();
+						lb.navigateTo(2);
+					});
+				}
+			});
+		});
+
+	});
+</script>
+
 </head>
 <body>
   <% if current_user %>
