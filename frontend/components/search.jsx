@@ -58,7 +58,7 @@ var SearchIndexItem = require('./indexItem.jsx');
                     all_searches={all_searches} albumView = {that.albumView}
                     albumCounter = {albumCounter}/>;
               })
-            })}
+            })
         </ul>
         <br className = "clear" />
       </div>

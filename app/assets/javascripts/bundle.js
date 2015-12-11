@@ -30999,7 +30999,7 @@
 	            all_searches: all_searches, albumView: that.albumView,
 	            albumCounter: albumCounter });
 	        }),
-	        ')}'
+	        ')'
 	      ),
 	      React.createElement('br', { className: 'clear' })
 	    );
