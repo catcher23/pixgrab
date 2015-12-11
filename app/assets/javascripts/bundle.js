@@ -31123,7 +31123,7 @@
 	              null,
 	              React.createElement(
 	                'button',
-	                { className: 'btn primary medium', type: 'submit', onClick: this.handleLogoutClick },
+	                { className: 'btn primary medium mids', type: 'submit', onClick: this.handleLogoutClick },
 	                'Log Out'
 	              )
 	            ),
@@ -31132,7 +31132,7 @@
 	              null,
 	              React.createElement(
 	                'button',
-	                { className: 'btn primary medium', onClick: this.handleAlbumsClick },
+	                { className: 'btn primary medium mids', onClick: this.handleAlbumsClick },
 	                'My Searches'
 	              )
 	            ),
@@ -31141,7 +31141,7 @@
 	              null,
 	              React.createElement(
 	                'button',
-	                { className: 'btn primary medium', onClick: this.handlePixClick },
+	                { className: 'btn primary medium mids', onClick: this.handlePixClick },
 	                'Current Search'
 	              )
 	            )

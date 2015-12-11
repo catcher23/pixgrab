@@ -29,9 +29,9 @@ module.exports = React.createClass({
               <a className="brand" href="#"><b>pixGrab</b></a>
               <ul className="nav">
 
-              <li><button className="btn primary medium" type="submit" onClick={this.handleLogoutClick}>Log Out</button></li>
-              <li><button className="btn primary medium" onClick={this.handleAlbumsClick}>My Searches</button></li>
-              <li><button className="btn primary medium" onClick={this.handlePixClick}>Current Search</button></li>
+              <li><button className="btn primary medium mids" type="submit" onClick={this.handleLogoutClick}>Log Out</button></li>
+              <li><button className="btn primary medium mids" onClick={this.handleAlbumsClick}>My Searches</button></li>
+              <li><button className="btn primary medium mids" onClick={this.handlePixClick}>Current Search</button></li>
               </ul>
             <SearchBar pixView = {this.handlePixClick} />
             </div>
