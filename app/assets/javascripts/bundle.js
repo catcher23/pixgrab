@@ -31208,9 +31208,9 @@
 	      React.createElement(
 	        'form',
 	        { action: 'searches', method: 'post', className: 'pull-right', onSubmit: this.handleSubmit },
-	        React.createElement('input', { className: 'input-medium', type: 'text', placeholder: 'Hashtag', name: 'hashtag', id: 'hashtag', valueLink: this.linkState('hashtag') }),
-	        React.createElement('input', { className: 'input-medium', type: 'date', placeholder: 'From', name: 'from', id: 'from', valueLink: this.linkState('from') }),
-	        React.createElement('input', { className: 'input-medium', type: 'date', placeholder: 'To', name: 'to', id: 'to', valueLink: this.linkState('to') }),
+	        React.createElement('input', { className: 'input-medium inputmids', type: 'text', placeholder: 'Hashtag', name: 'hashtag', id: 'hashtag', valueLink: this.linkState('hashtag') }),
+	        React.createElement('input', { className: 'input-medium inputmids', type: 'date', placeholder: 'From', name: 'from', id: 'from', valueLink: this.linkState('from') }),
+	        React.createElement('input', { className: 'input-medium inputmids', type: 'date', placeholder: 'To', name: 'to', id: 'to', valueLink: this.linkState('to') }),
 	        React.createElement(
 	          'button',
 	          { className: 'btn primary medium', type: 'submit' },
