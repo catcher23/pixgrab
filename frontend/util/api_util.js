@@ -2,7 +2,6 @@ var ApiActions = require('../actions/api_actions.js');
 module.exports = {
 
 createSearch: function (search) {
-
   $.ajax({
     url: "/searches",
     method: "POST",
@@ -13,13 +12,24 @@ createSearch: function (search) {
   });
 },
 
-fetchSingleSearch: function (id) {
+retrieveSearches: function (id) {
   $.ajax({
-    url: "/searches" + id,
-    success: function (search) {
-      ApiActions.receiveSingleHuman(search);
+    url: "/users/" + id,
+    method: "GET",
+    data: {id: id},
+    success: function (searches) {
+      ApiActions.receiveSearch(searches);
     }
   });
 },
 
+logout: function() {
+    $.ajax({
+      url: "/session/",
+      method: "DELETE",
+      success: function() {
+      window.location.href = "/";
+      }
+    });
+  },
 };

@@ -20,24 +20,29 @@ module.exports = React.createClass({
     this.setState({loaded: !this.state.loaded});
   },
 
-
   componentDidMount: function () {
     this.searchListener = SearchStore.addListener(this._onChange);
     this.onSuccess();
   },
 
-
     onSuccess: function (profile) {
       this.setState({loaded: true });
-    },
-
-    onError: function (err) {
-      // error handling goes here
     },
 
   componentWillUnmount: function () {
     this.searchListener.remove();
   },
+
+  albumViewHandler: function() {
+
+    this.refs['search'].albumView();
+  },
+
+  pixViewHandler: function() {
+
+    this.refs['search'].pixView();
+  },
+
 
   render: function() {
 
@@ -48,11 +53,11 @@ module.exports = React.createClass({
         </div>
         <div>
           <header className="header">
-            <NavBar />
+            <NavBar albumView = {this.albumViewHandler} pixView = {this.pixViewHandler}/>
           </header>
           <body>
           <Loader loaded={this.state.loaded}>
-          <Search key={this.state.search} search={this.state.search} />
+          <Search key={this.state.search} searchObject={this.state.search} ref='search'/>
           </Loader>
           </body>
         </div>

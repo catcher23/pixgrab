@@ -1,5 +1,6 @@
 class Search < ActiveRecord::Base
-  validates :hashtag, presence: true
+  validates :hashtag, :from, :to, presence: true
+  belongs_to :user
 
   def access_token
     "2290945337.1677ed0.0717954f1bb848d8b71957373c170bd5"
@@ -9,6 +10,14 @@ class Search < ActiveRecord::Base
     pic_creation.between?(from, to) &&
     j.tags.include?(hashtag) &&
     picHash[j.id] == 0
+  end
+
+  def check(searches)
+    searches.each do |search|
+      if search.query == nil
+        Search.delete(Search.find(search.id))
+      end
+    end
   end
 
   def generate_results(search, client, from, to, hashtag)

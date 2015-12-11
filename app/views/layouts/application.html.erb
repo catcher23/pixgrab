@@ -8,23 +8,10 @@
   <%= render partial: "lightbox" %>
 </head>
 <body>
-  <% if flash[:errors] %>
-    <% flash[:errors].each do |error| %>
-    <div class="alert-message error">
-      <a class="close" href="#">×</a>
-      <%= error %>
-    </div>
-    <% end %>
-  <% end %>
-
-  <% if flash[:notices] %>
-    <% flash[:notices].each do |notice| %>
-    <div class="alert-message success">
-      <a class="close" href="#">×</a>
-      <%= notice %>
-    </div>
-    <% end %>
-  <% end %>
+  <% if current_user %>
+    <script>window.CURRENT_USER_ID = <%= current_user.id %></script>
+    <script>window.CURRENT_USER_USERNAME = "<%= current_user.username %>"</script>
+  <%end %>
 <%= yield %>
 
 </body>

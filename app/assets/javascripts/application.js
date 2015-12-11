@@ -16,6 +16,7 @@
 //= require bootstrap-lightbox
 //= require react
 //= require react_ujs
+//= require flash
 //= require ReactRouter.min
 //= require flux
 //= require eventemitter

@@ -1234,6 +1234,7 @@
  input.medium,
  textarea.medium,
  select.medium {
+   margin-right: 5px;
    position: center;
    display: inline-block;
    float: none;
@@ -1573,12 +1574,7 @@
  table .span16 {
    width: 155px;
  }
- .zebra-striped tbody tr:nth-child(odd) td, .zebra-striped tbody tr:nth-child(odd) th {
-   background-color: #f9f9f9;
- }
- .zebra-striped tbody tr:hover td, .zebra-striped tbody tr:hover th {
-   background-color: #f2f2f2;
- }
+
  table .header {
    cursor: pointer;
  }
@@ -2158,6 +2154,7 @@
  .alert-message.danger,
  .btn.error,
  .alert-message.error {
+
    padding-top: 46px;
    position:fixed;
      width:100%;
@@ -2253,6 +2250,7 @@
  }
 
  .btn.primary {
+   margin-right: 5px;
    color: white;
    background-color: green;
    background-repeat: repeat-x;
@@ -2389,6 +2387,7 @@
    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+margin-top: 200px;
  }
  .alert-message .close {
    margin-top: 1px;
@@ -2404,6 +2403,7 @@
  }
  .alert-message.error, .alert-message.success, .alert-message.info {
    text-shadow: none;
+
  }
  .alert-message h5 {
    line-height: 14px;
@@ -2548,7 +2548,7 @@
    z-index: 11000;
    width: 540px;
    height: 585px;
-   margin: -270px 0 0 -275px;
+   margin: -300px 0 0 -275px;
    background-color: #ffffff;
    border: 1px solid #999;
    border: 1px solid rgba(0, 0, 0, 0.3);
@@ -4201,8 +4201,21 @@ a:visited {color:#000;}
 {position:absolute; left:-50px; top:-32px; width:200px; height:150px; border-color:#fff;}
 
 .loading {
-  margin-top: 8px;
-  background-color:green;
+  margin-top: 56px;
+  position: fixed;
+  width: 190px;
+  padding-top: 2px;
+  height: 20px;
+  text-align:center;
+  top: -14px;
+  right: 58%;
+  bottom: 0;
+  left: 43%;
+  color:green;
+  background-color: white;
+  border-color: 1px solid green;
+  border-radius:5px;
+  font-size: 20;
 }
 
 .ekko-lightbox-container {
@@ -4274,3 +4287,95 @@ a:visited {color:#000;}
      background: transparent;
      z-index: 9999;
    }
+
+.nice-image {
+  background: url("http://res.cloudinary.com/danlau168/image/upload/v1449717797/6871812-norway-landscape_lptxvh.jpg");
+}
+
+
+
+ .thumb2 {
+ /*display: block;
+ position: relative;
+ width: 144px;
+ height: 144px;
+ padding:8px;
+ border:solid;
+ border-color: #dddddd #aaaaaa #aaaaaa #dddddd;
+ border-width: 1px 2px 2px 1px;
+ background-color:#F8F8FF;
+ border-radius: 5px;*/
+
+ display: block;
+ position: relative;
+ width: 114px;
+ height: 114px;
+ border: 5px solid #f5f5f5;
+ border-radius: 5px;
+
+ }
+
+ .thumb2 span {
+   display: none;
+ }
+ .thumb2:hover{
+ border: 5px solid green;
+ border-radius: 5px;
+ }
+
+ .thumb2:hover span{
+   display:block;
+       position:absolute;
+       top:-1.3em; left:-1.8em; width:7em;
+       border:1px solid lightgreen;
+       background-color:green; color:white;
+       text-align: center;
+       border-radius: 5px;
+ }
+ .thumb2:after {
+ content: attr(title);
+ display: none;
+ position: absolute;
+ left: 50%;
+ transform: translateX(-50%);
+ bottom: 65px;
+ background: #000;
+ color: #fff;
+ font-size: 12px;
+ padding: 5px 10px;
+ border-radius: 5px;
+ }
+
+ .thumb2:before {
+ content: "";
+ display: none;
+ position: absolute;
+ left: 50%;
+ transform: translateX(-50%);
+ top: -7px;
+ border-top: 5px solid #000;
+ border-bottom: 0;
+ border-right: 5px solid transparent;
+ border-left: 5px solid transparent;
+ }
+
+.caption {
+  color: green;
+  font-size: 14px;
+  margin-left: 25px;
+}
+
+.pix {
+
+}
+
+.albums{
+
+}
+
+.logout{
+  margin-top: 1.5px;
+  font-size: 11px;
+  padding-bottom: 3.5px;
+
+}

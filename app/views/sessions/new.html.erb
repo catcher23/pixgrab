@@ -1,0 +1,77 @@
+<body>
+   <div class="topbar">
+     <div class="fill">
+       <div class="container">
+         <a class="brand" href="#"><b>pixGrab</b></a>
+         <ul class="nav">
+         </ul>
+         <form action="<%=session_url%>" method = "post" class="pull-right">
+           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+           <input class="input-medium" type="text" placeholder="Username" name="user[username]" id="Username">
+           <input class="input-medium" type="password" placeholder="Password" name="user[password]" id="Password">
+           <button class="btn primary medium" type="submit">Sign in</button>
+         </form>
+
+       </div>
+     </div>
+   </div>
+
+   <div class="container ">
+
+     <div class="content2 nice-image">
+
+       <div class="row">
+         <div class="span10">
+          <br><br><br><br>
+   <h1>Robots can track humans <br>in the world on pixGrab</h1><br>
+   <table>
+        <tbody>
+          <tr>
+            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_2_7342259515_uq5sx3.png"/></td>
+            <td><b>Add humans</b> and track them</td>
+          </tr>
+          <tr>
+            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_4_2205994676_ssuada.png"/></td>
+            <td><b>Post notes</b> on human pages</td>
+          </tr>
+          <tr>
+            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_8_5418815504_ftkalr.png"/></td>
+            <td><b>Track humans</b> in the world</td>
+          </tr>
+        </tbody>
+      </table>
+
+         </div>
+         <div class="span4">
+           <br><br><br><br>
+           <h1>Sign Up</h1>
+           <br>
+           <p>It's free and always will be.</p>
+           <br>
+           <form action = "<%=users_url%>" method = "post">
+         <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+           Username
+         <input type="string" name="user[username]" id="Username" value="">
+         <br><br>
+         Password
+         <input type="password" name="user[password]" id="Password" value="">
+         <br><br>
+         <input type="submit" class="btn primary  medium"  value="Sign Up">
+         </form>
+         <form className='guest' action = "<%=session_url%>" method = "post">
+       <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+       <input type="hidden" name="user[username]" id="Username" value="Guest">
+       <input type="hidden" name="user[password]" id="Password" value="password">
+       <input type="submit" class="btn primary medium"  value="Guest Login">
+       </form>
+
+         </div>
+
+       </div>
+     </div>
+
+     <footer class='copyright'><br>
+       <p>&copy; Danny Lau 2015</p>
+     </footer>
+   </div> <!-- /container -->
+ </body>

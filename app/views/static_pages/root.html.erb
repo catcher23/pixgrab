@@ -1,3 +1,19 @@
 <div id = 'pixgrab'>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+    <div class="alert-message error">
+      <a class="close" href="#">×</a>
+      <%= error %>
+    </div>
+    <% end %>
+  <% end %>
 
+  <% if flash[:notices] %>
+    <% flash[:notices].each do |notice| %>
+    <div class="alert-message success">
+      <a class="close" href="#">×</a>
+      <%= notice %>
+    </div>
+    <% end %>
+  <% end %>
 </div>

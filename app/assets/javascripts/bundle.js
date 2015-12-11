@@ -23993,12 +23993,18 @@
 	    this.setState({ loaded: true });
 	  },
 
-	  onError: function (err) {
-	    // error handling goes here
-	  },
-
 	  componentWillUnmount: function () {
 	    this.searchListener.remove();
+	  },
+
+	  albumViewHandler: function () {
+
+	    this.refs['search'].albumView();
+	  },
+
+	  pixViewHandler: function () {
+
+	    this.refs['search'].pixView();
 	  },
 
 	  render: function () {
@@ -24021,7 +24027,7 @@
 	        React.createElement(
 	          'header',
 	          { className: 'header' },
-	          React.createElement(NavBar, null)
+	          React.createElement(NavBar, { albumView: this.albumViewHandler, pixView: this.pixViewHandler })
 	        ),
 	        React.createElement(
 	          'body',
@@ -24029,7 +24035,7 @@
 	          React.createElement(
 	            Loader,
 	            { loaded: this.state.loaded },
-	            React.createElement(Search, { key: this.state.search, search: this.state.search })
+	            React.createElement(Search, { key: this.state.search, searchObject: this.state.search, ref: 'search' })
 	          )
 	        )
 	      )
@@ -30857,7 +30863,6 @@
 	module.exports = {
 
 	  createSearch: function (search) {
-
 	    $.ajax({
 	      url: "/searches",
 	      method: "POST",
@@ -30868,15 +30873,26 @@
 	    });
 	  },
 
-	  fetchSingleSearch: function (id) {
+	  retrieveSearches: function (id) {
 	    $.ajax({
-	      url: "/searches" + id,
-	      success: function (search) {
-	        ApiActions.receiveSingleHuman(search);
+	      url: "/users/" + id,
+	      method: "GET",
+	      data: { id: id },
+	      success: function (searches) {
+	        ApiActions.receiveSearch(searches);
+	      }
+	    });
+	  },
+
+	  logout: function () {
+	    $.ajax({
+	      url: "/session/",
+	      method: "DELETE",
+	      success: function () {
+	        window.location.href = "/";
 	      }
 	    });
 	  }
-
 	};
 
 /***/ },
@@ -30906,41 +30922,101 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-
+	var ApiUtil = __webpack_require__(231);
 	module.exports = React.createClass({
-	  displayName: "exports",
+	  displayName: 'exports',
+
+	  componentDidMount: function () {},
+	  albumView: function () {
+	    $(".albums").fadeIn("linear");
+	    $(".pix").fadeOut("linear");
+	  },
+	  pixView: function () {
+	    $(".albums").fadeOut("linear");
+	    $(".pix").fadeIn("linear");
+	  },
 
 	  render: function () {
 	    var search = [];
-	    if (this.props.search) {
-	      search = this.props.search.query || [];
+	    var all_searches = [];
 
-	      if (search === this.props.search.query) {
-	        search = JSON.parse(search);
+	    if (this.props.searchObject) {
+	      if (this.props.searchObject.search !== null) {
+	        search = JSON.parse(this.props.searchObject.search.query);
+	        all_searches = this.props.searchObject.all_searches;
+	      } else {
+	        all_searches = this.props.searchObject.all_searches;
 	      }
+	    } else {
+	      ApiUtil.retrieveSearches(CURRENT_USER_ID);
+	      ApiUtil.retrieveSearches(CURRENT_USER_ID);
 	    }
 
 	    return React.createElement(
-	      "div",
-	      { className: "photo" },
+	      'div',
+	      { className: 'photo' },
 	      React.createElement(
-	        "ul",
-	        { className: "topic" },
+	        'ul',
+	        { className: 'topic pix' },
 	        search.map(function (image) {
 	          return React.createElement(
-	            "li",
+	            'li',
 	            { key: image.image },
 	            React.createElement(
-	              "a",
-	              { href: image.link, className: "thumb",
-	                "data-toggle": "lightbox", "data-gallery": "multiimages", "data-title": 'Tagged on: ' + image.created_time.slice(0, 10) },
-	              React.createElement("img", { src: image.image, className: "img-responsive" })
+	              'a',
+	              { href: image.link, className: 'thumb',
+	                'data-toggle': 'lightbox',
+	                'data-gallery': 'multiimages',
+	                'data-title': 'Tagged on: ' + image.created_time.slice(0, 10) },
+	              React.createElement('img', { src: image.image, className: 'img-responsive' })
 	            ),
-	            React.createElement("br", { className: "clear" })
+	            React.createElement('br', { className: 'clear' })
 	          );
 	        })
 	      ),
-	      React.createElement("br", { className: "clear" })
+	      React.createElement(
+	        'ul',
+	        { className: 'topic albums' },
+	        all_searches.map(function (search) {
+	          firstSearch = JSON.parse(search.query)[0];
+	          secondSearch = JSON.parse(search.query)[1];
+	          return React.createElement(
+	            'li',
+	            { key: search.id },
+	            React.createElement(
+	              'div',
+	              { className: 'col-md-offset-2 col-md-8' },
+	              React.createElement(
+	                'div',
+	                { className: 'row' },
+	                React.createElement(
+	                  'a',
+	                  { href: firstSearch.link, className: 'thumb2 col-sm-4',
+	                    'data-toggle': 'lightbox',
+	                    'data-gallery': 'multiimages',
+	                    'data-title': 'Tagged on: ' + firstSearch.created_time.slice(0, 10) },
+	                  React.createElement('img', { src: firstSearch.image, className: 'img-responsive' })
+	                ),
+	                React.createElement(
+	                  'a',
+	                  { href: secondSearch.link, className: 'thumb2 col-sm-4',
+	                    'data-toggle': 'lightbox',
+	                    'data-gallery': 'multiimages',
+	                    'data-title': 'Tagged on: ' + secondSearch.created_time.slice(0, 10) },
+	                  React.createElement('img', { src: secondSearch.image, className: 'img-responsive' })
+	                ),
+	                React.createElement('br', { className: 'clear' }),
+	                React.createElement(
+	                  'div',
+	                  { className: 'caption' },
+	                  'Album # ' + search.id
+	                )
+	              )
+	            )
+	          );
+	        })
+	      ),
+	      React.createElement('br', { className: 'clear' })
 	    );
 	  }
 	});
@@ -30955,6 +31031,18 @@
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
+	  handleAlbumsClick: function () {
+
+	    if (typeof this.props.albumView === 'function') {
+	      this.props.albumView();
+	    }
+	  },
+	  handlePixClick: function () {
+
+	    if (typeof this.props.pixView === 'function') {
+	      this.props.pixView();
+	    }
+	  },
 	  render: function () {
 	    return React.createElement(
 	      'div',
@@ -30974,7 +31062,28 @@
 	              'pixGrab'
 	            )
 	          ),
-	          React.createElement('ul', { className: 'nav' }),
+	          React.createElement(
+	            'ul',
+	            { className: 'nav' },
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'button',
+	                { className: 'btn primary medium', onClick: this.handleAlbumsClick },
+	                'My Searches'
+	              )
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'button',
+	                { className: 'btn primary medium', onClick: this.handlePixClick },
+	                'Current Search'
+	              )
+	            )
+	          ),
 	          React.createElement(SearchBar, null)
 	        )
 	      )
@@ -30990,6 +31099,7 @@
 	var ApiUtil = __webpack_require__(231);
 	var ApiActions = __webpack_require__(232);
 	var Index = __webpack_require__(207);
+	var Search = __webpack_require__(233);
 	var History = __webpack_require__(159).History;
 	var LinkedStateMixin = __webpack_require__(236);
 
@@ -30998,10 +31108,11 @@
 
 	  mixins: [LinkedStateMixin, ReactRouter.History],
 
-	  componentDidMount: function () {},
+	  componentDidMount: function () {
+	    $(".loading").hide();
+	  },
 
 	  getInitialState: function () {
-
 	    return { hashtag: "", from: "", to: "" };
 	  },
 
@@ -31010,19 +31121,39 @@
 	  },
 
 	  handleSubmit: function (event) {
+
 	    event.preventDefault();
-	    var search = $.extend({}, this.state);
-	    ApiUtil.createSearch(search);
-	    ApiActions.loading();
-	    this.setState({ hashtag: "", from: "", to: "" });
-	    this.refresh();
+	    if (this.state.hashtag.length === 0 || this.state.from.length === 0 || this.state.to.length === 0) {
+	      $(".loading").show();
+	      setTimeout(function () {
+	        $(".loading").fadeOut("linear");
+	      }, 2000);
+	    } else {
+	      var search = $.extend({}, this.state, { user_id: CURRENT_USER_ID });
+	      ApiUtil.createSearch(search);
+	      ApiActions.loading();
+	      this.setState({ hashtag: "", from: "", to: "" });
+	      this.refresh();
+	    }
+	  },
+
+	  handleLogoutClick: function () {
+	    ApiUtil.logout();
 	  },
 	  render: function () {
 
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement('button', { className: 'loading' }),
+	      React.createElement(
+	        'form',
+	        { className: 'pull-right' },
+	        React.createElement(
+	          'button',
+	          { className: 'btn primary medium logout', onClick: this.handleLogoutClick },
+	          'Log Out'
+	        )
+	      ),
 	      React.createElement(
 	        'form',
 	        { action: 'searches', method: 'post', className: 'pull-right', onSubmit: this.handleSubmit },
@@ -31034,6 +31165,11 @@
 	          { className: 'btn primary medium', type: 'submit' },
 	          'Submit'
 	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'loading' },
+	        'Please fill out all fields'
 	      )
 	    );
 	  }
