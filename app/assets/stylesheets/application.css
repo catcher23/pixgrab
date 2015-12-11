@@ -2549,7 +2549,7 @@ margin-top: 200px;
    z-index: 11000;
    width: 540px;
    height: 585px;
-   margin: -250px 0 0 -275px;
+   margin: -310px 0 0 -275px;
    background-color: #ffffff;
    border: 1px solid #999;
    border: 1px solid rgba(0, 0, 0, 0.3);
@@ -2582,7 +2582,7 @@ margin-top: 200px;
  }
  .modal-header {
    border-bottom: 1px solid #eee;
-   
+
  }
  .modal-body {
    padding: 15px;
