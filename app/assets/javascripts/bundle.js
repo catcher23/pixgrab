@@ -31058,6 +31058,10 @@
 	      this.props.pixView();
 	    }
 	  },
+
+	  handleLogoutClick: function () {
+	    ApiUtil.logout();
+	  },
 	  render: function () {
 	    return React.createElement(
 	      'div',
@@ -31080,6 +31084,15 @@
 	          React.createElement(
 	            'ul',
 	            { className: 'nav' },
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'button',
+	                { className: 'btn primary medium', type: 'submit', onClick: this.handleLogoutClick },
+	                'Log Out'
+	              )
+	            ),
 	            React.createElement(
 	              'li',
 	              null,
@@ -31153,23 +31166,11 @@
 	    }
 	  },
 
-	  handleLogoutClick: function () {
-	    ApiUtil.logout();
-	  },
 	  render: function () {
 
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(
-	        'form',
-	        { className: 'pull-right' },
-	        React.createElement(
-	          'button',
-	          { className: 'btn primary medium green', type: 'submit', onClick: this.handleLogoutClick },
-	          'Log Out'
-	        )
-	      ),
 	      React.createElement(
 	        'form',
 	        { action: 'searches', method: 'post', className: 'pull-right', onSubmit: this.handleSubmit },

@@ -42,16 +42,11 @@ module.exports = React.createClass({
     }
     },
 
-    handleLogoutClick: function() {
-        ApiUtil.logout();
-      },
+
   render: function() {
 
     return (
       <div>
-      <form className="pull-right">
-        <button className="btn primary medium green" type="submit" onClick={this.handleLogoutClick}>Log Out</button>
-      </form>
       <form action="searches" method = "post" className="pull-right" onSubmit={this.handleSubmit}>
         <input className="input-medium" type="text" placeholder="Hashtag" name="hashtag" id="hashtag" valueLink={this.linkState('hashtag')}/>
         <input className="input-medium" type="date" placeholder="From" name="from" id="from" valueLink={this.linkState('from')}/>
