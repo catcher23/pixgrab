@@ -53,7 +53,7 @@ Technology used
 - In order to keep the app singled-paged once logged in, when a user wants to view a previous search, the saved search is retrieved and rendered in the browser through React, preventing a page refresh or URL redirect.
 
 ### To improve in the future
-- Currently, album numbers are displayed according to their search ID. Preferably, they should be renumbered with respect to the user.
+- I would like to add error messages and notifications in the future, such as when an album is deleted.
 - For demo purposes and because of Instagram sandbox restrictions, a single access token is used to hit the Instagram Api. In production, each user should sign in through Instagram with their own access tokens.
 - Functionality should be added to allow users to view other user's collections, and share their own collections with others.
 - The code needs to be refactored and commented for clarity and to ideally implement a single action per callback.
