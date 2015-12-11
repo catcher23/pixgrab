@@ -50,7 +50,7 @@ module.exports = React.createClass({
     return (
       <div>
       <form className="pull-right">
-        <button className="btn primary medium logout" onClick={this.handleLogoutClick}>Log Out</button>
+        <button className="btn primary medium" onClick={this.handleLogoutClick}>Log Out</button>
       </form>
       <form action="searches" method = "post" className="pull-right" onSubmit={this.handleSubmit}>
         <input className="input-medium" type="text" placeholder="Hashtag" name="hashtag" id="hashtag" valueLink={this.linkState('hashtag')}/>
