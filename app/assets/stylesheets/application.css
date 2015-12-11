@@ -4375,8 +4375,13 @@ a:visited {color:#000;}
 }
 
 .logout{
-  margin-top: 1px;
-  font-size: 11px;
+  margin-top: 0px;
+  font-size: 10px;
 
 
+}
+
+.signin{
+  margin-top:5px;
+  padding-top: 3px;
 }

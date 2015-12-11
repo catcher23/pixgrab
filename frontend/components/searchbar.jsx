@@ -50,13 +50,13 @@ module.exports = React.createClass({
     return (
       <div>
       <form className="pull-right">
-        <button className="btn primary medium green" onClick={this.handleLogoutClick}>Log Out</button>
+        <button className="btn primary medium green" type="submit" onClick={this.handleLogoutClick}>Log Out</button>
       </form>
       <form action="searches" method = "post" className="pull-right" onSubmit={this.handleSubmit}>
         <input className="input-medium" type="text" placeholder="Hashtag" name="hashtag" id="hashtag" valueLink={this.linkState('hashtag')}/>
         <input className="input-medium" type="date" placeholder="From" name="from" id="from" valueLink={this.linkState('from')}/>
         <input className="input-medium" type="date" placeholder="To" name="to" id="to" valueLink={this.linkState('to')}/>
-        <button className="btn primary medium" type="submit">Submit</button>
+        <button className="btn primary medium" type="submit">Search</button>
       </form>
        <div className='loading'>Please fill out all fields</div>
     </div>

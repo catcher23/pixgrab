@@ -31166,7 +31166,7 @@
 	        { className: 'pull-right' },
 	        React.createElement(
 	          'button',
-	          { className: 'btn primary medium logout', onClick: this.handleLogoutClick },
+	          { className: 'btn primary medium green', type: 'submit', onClick: this.handleLogoutClick },
 	          'Log Out'
 	        )
 	      ),
@@ -31179,7 +31179,7 @@
 	        React.createElement(
 	          'button',
 	          { className: 'btn primary medium', type: 'submit' },
-	          'Submit'
+	          'Search'
 	        )
 	      ),
 	      React.createElement(
