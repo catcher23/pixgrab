@@ -20,6 +20,12 @@ class SearchesController < ApplicationController
     end
 end
 
+  def destroy
+      user = User.find(Search.find(params['search_id']).user_id)
+      Search.delete(Search.find(params['search_id']))
+      all_searches = user.searches
+      render json: {search: nil, all_searches: all_searches}
+  end
 
   def search_params
     params.require(:search).permit(:hashtag, :from, :to, :query, :user_id)

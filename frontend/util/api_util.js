@@ -11,6 +11,16 @@ createSearch: function (search) {
     }
   });
 },
+deleteSearch: function (search_id) {
+  $.ajax({
+    url: "/searches",
+    method: "DELETE",
+    data: {search_id: search_id},
+    success: function (searches) {
+      ApiActions.receiveSearch(searches);
+    }
+  });
+},
 
 retrieveSearches: function (id) {
   $.ajax({

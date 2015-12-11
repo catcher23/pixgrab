@@ -1,5 +1,5 @@
 # pixGrab
-Find tagged images on Instagram and save them in collections
+Find tagged images on Instagram between start and end dates and save them in collections
 
 ## How to Play
 [www.pixgrab.xyz][link]
@@ -8,16 +8,18 @@ Find tagged images on Instagram and save them in collections
 
 ![screenshot_1]
 
-[screenshot_1]: http://res.cloudinary.com/danlau168/image/upload/v1448234137/ss1_copy_otbq9p.png
+[screenshot_1]: http://res.cloudinary.com/danlau168/image/upload/v1449817150/Screen_Shot_2015-12-10_at_10.58.26_PM_fytppn.png
 
 ## Technology
 Technology used
 - Ruby on Rails
-- JavaScript
-- HTML5 Canvas
+- React
+- Flux
 - jQuery
+- PostgreSQL
+- Instagram API
 
-### Game
+### App
 Object-oriented design using prototypical inheritance
 
 ### Dual Canvas and FPS

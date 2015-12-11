@@ -30871,6 +30871,16 @@
 	      }
 	    });
 	  },
+	  deleteSearch: function (search_id) {
+	    $.ajax({
+	      url: "/searches",
+	      method: "DELETE",
+	      data: { search_id: search_id },
+	      success: function (searches) {
+	        ApiActions.receiveSearch(searches);
+	      }
+	    });
+	  },
 
 	  retrieveSearches: function (id) {
 	    $.ajax({
@@ -30999,6 +31009,7 @@
 
 	var React = __webpack_require__(1);
 	var ApiActions = __webpack_require__(232);
+	var ApiUtil = __webpack_require__(231);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
@@ -31016,6 +31027,16 @@
 	    }, 10);
 	  },
 
+	  handleDelete: function () {
+	    search_id = this.props.search.id;
+	    ApiActions.loading();
+	    setTimeout(function () {
+	      ApiUtil.deleteSearch(search_id);
+	    }, 10);
+	    setTimeout(function () {
+	      ApiActions.loading();
+	    }, 20);
+	  },
 	  render: function () {
 
 	    var search = JSON.parse(this.props.search.query);
@@ -31032,6 +31053,11 @@
 	        'div',
 	        { className: 'caption' },
 	        'Album # ' + this.props.search.id
+	      ),
+	      React.createElement(
+	        'button',
+	        { className: 'btn primary small', onClick: this.handleDelete },
+	        'Delete'
 	      )
 	    );
 	  }
