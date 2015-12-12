@@ -30932,6 +30932,7 @@
 
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(231);
+	var ApiActions = __webpack_require__(232);
 	var SearchIndexItem = __webpack_require__(234);
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -30963,7 +30964,7 @@
 	        all_searches = this.props.searchObject.all_searches;
 	      }
 	    } else {
-	      ApiUtil.retrieveSearches(CURRENT_USER_ID);
+	      ApiActions.loading();
 	      ApiUtil.retrieveSearches(CURRENT_USER_ID);
 	    }
 	    var that = this;
@@ -31124,7 +31125,7 @@
 	          { className: 'container' },
 	          React.createElement(
 	            'a',
-	            { className: 'brand', href: '#' },
+	            { className: 'brand bpos', href: '#' },
 	            React.createElement(
 	              'b',
 	              null,

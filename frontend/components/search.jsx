@@ -1,5 +1,6 @@
 var React = require('react');
 var ApiUtil = require('../util/api_util.js');
+var ApiActions = require('../actions/api_actions.js');
 var SearchIndexItem = require('./indexItem.jsx');
   module.exports = React.createClass({
     componentDidMount: function () {
@@ -29,8 +30,9 @@ var SearchIndexItem = require('./indexItem.jsx');
           all_searches = this.props.searchObject.all_searches;
         }
       } else {
+        ApiActions.loading();
         ApiUtil.retrieveSearches(CURRENT_USER_ID);
-        ApiUtil.retrieveSearches(CURRENT_USER_ID);
+
       }
       var that = this;
       var albumCounter = 0;

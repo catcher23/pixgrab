@@ -26,7 +26,7 @@ module.exports = React.createClass({
       <div className="topbar">
           <div className="fill">
             <div className="container">
-              <a className="brand" href="#"><b>pixGrab</b></a>
+              <a className="brand bpos" href="#"><b>pixGrab</b></a>
               <ul className="nav">
 
               <li><button className="btn primary medium mids" type="submit" onClick={this.handleLogoutClick}>Log Out</button></li>
