@@ -30938,7 +30938,7 @@
 	  displayName: 'exports',
 
 	  componentDidMount: function () {
-	    $(".albums").hide();
+	    // $( ".albums" ).hide();
 	  },
 
 	  albumView: function () {
