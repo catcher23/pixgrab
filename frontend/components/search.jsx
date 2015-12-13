@@ -4,7 +4,7 @@ var ApiActions = require('../actions/api_actions.js');
 var SearchIndexItem = require('./indexItem.jsx');
   module.exports = React.createClass({
     componentDidMount: function () {
-      // $( ".albums" ).hide(); 
+      // $( ".albums" ).hide();
     },
 
     albumView: function () {

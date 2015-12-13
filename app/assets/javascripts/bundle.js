@@ -30862,11 +30862,16 @@
 	module.exports = {
 
 	  createSearch: function (search) {
+	    var timeOut = setTimeout(function () {
+	      ApiActions.loading();
+	    }, 20000);
+
 	    $.ajax({
 	      url: "/searches",
 	      method: "POST",
 	      data: { search: search },
 	      success: function (search) {
+	        clearTimeout(timeOut);
 	        ApiActions.receiveSearch(search);
 	      }
 	    });
@@ -30918,8 +30923,10 @@
 	      search: search
 	    });
 	  },
+	  throwError: function (search) {},
 
 	  loading: function () {
+
 	    Dispatcher.dispatch({
 	      actionType: SearchConstants.LOADING
 	    });

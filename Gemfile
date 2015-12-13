@@ -20,6 +20,7 @@ gem 'instagram'
 gem 'omniauth-instagram'
 gem 'omniauth'
 gem 'httparty'
+gem "rack-timeout"
 
 group :development, :test do
   gem 'byebug'

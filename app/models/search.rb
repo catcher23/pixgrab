@@ -42,9 +42,9 @@ class Search < ActiveRecord::Base
         end
         max_id = client.tag_recent_media(hashtag, :count => 33, :max_id => max_id).pagination.next_max_id
         p picHash.length
+        end
+        end
       end
-      end
-    end
-    objectHash
+      objectHash
   end
 end
