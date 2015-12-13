@@ -35,6 +35,14 @@ Technology used
 - bcrypt
 - figaro
 
+### NPM Packages
+
+- babel
+- flux
+- react-loader
+- react-router
+- webpack
+
 ### App
 - The app paginates through the tag and user media endpoints and collects content whose tag time is in between the start and end dates.
 - Since Instagram currently does not have default parameters to restrict tags by date, the max_timestamp min_timestamp parameters of the user self media endpoint are used to retrieve those dates, based on the tag that inputted.
@@ -43,6 +51,7 @@ Technology used
 ### Backend
 - To minimize API calls to the backend, the user id media endpoint is used in conjunction with the tag endpoint. The use of timestamp searching in the user id media end prevents naive pagination from the most recent date to the date the user specifies.
 - The Rails backend provides an API that accepts a POST to create a search collection and GET to retrieve content.
+- The react router is used to handle single-page redirects instead of the stock rails router, to make it a single page app once logged-in
 - The search data is stored in a PostgreSQL database, at the discretion of the user.
 - In terms of fault tolerance, if there is an error in the collection there is an automatic check every time a search collection is retrieved from the database. If there are null values due to error, the search is deleted. This is in addition to the initial validation checks.
 
