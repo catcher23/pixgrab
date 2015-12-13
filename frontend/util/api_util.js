@@ -3,7 +3,6 @@ module.exports = {
 
 createSearch: function (search) {
   var timeOut = setTimeout(function(){ApiActions.loading();}, 20000);
-
   $.ajax({
     url: "/searches",
     method: "POST",
