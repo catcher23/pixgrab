@@ -25,10 +25,20 @@ Technology used
 - PostgreSQL
 - Instagram API
 
+### Gems
+- react
+- newrelic
+- instagram
+- httparty
+- rack-timeout
+- jbuilder
+- bcrypt
+- figaro
+
 ### App
--The app paginates through the tag and user media endpoints and collects content whose tag time is in between the start and end dates.
--Since Instagram currently does not have default parameters to restrict tags by date, the max_timestamp min_timestamp parameters of the user self media endpoint are used to retrieve those dates, based on the tag that inputted.
--The searches are saved to the datebase and are viewable by the user, who has the option to delete the collection as well.
+- The app paginates through the tag and user media endpoints and collects content whose tag time is in between the start and end dates.
+- Since Instagram currently does not have default parameters to restrict tags by date, the max_timestamp min_timestamp parameters of the user self media endpoint are used to retrieve those dates, based on the tag that inputted.
+- The searches are saved to the database and are viewable by the user, who has the option to delete the collection as well.
 
 ### Backend
 - To minimize API calls to the backend, the user id media endpoint is used in conjunction with the tag endpoint. The use of timestamp searching in the user id media end prevents naive pagination from the most recent date to the date the user specifies.
