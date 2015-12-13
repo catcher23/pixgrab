@@ -1,14 +1,18 @@
 var ApiActions = require('../actions/api_actions.js');
 module.exports = {
 
-createSearch: function (search) {
+createSearch: function (search, callback, timer) {
   var timeOut = setTimeout(function(){ApiActions.loading();}, 20000);
+
   $.ajax({
     url: "/searches",
     method: "POST",
     data: {search: search},
     success: function (search) {
       clearTimeout(timeOut);
+      if (typeof callback === 'function') {
+             callback(timer);
+        }
       ApiActions.receiveSearch(search);
     }
   });
@@ -36,6 +40,16 @@ retrieveSearches: function (id) {
 },
 
 logout: function() {
+    $.ajax({
+      url: "/session/",
+      method: "DELETE",
+      success: function() {
+      window.location.href = "/";
+      }
+    });
+  },
+
+timeOut: function(clearTimeOut, timer) {
     $.ajax({
       url: "/session/",
       method: "DELETE",

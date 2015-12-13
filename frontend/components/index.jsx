@@ -38,7 +38,7 @@ module.exports = React.createClass({
   },
 
   pixViewHandler: function() {
-  
+
     this.refs['search'].pixView();
   },
 

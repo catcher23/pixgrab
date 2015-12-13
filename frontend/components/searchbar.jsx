@@ -13,6 +13,7 @@ module.exports = React.createClass({
   componentDidMount: function () {
     $( ".loading" ).hide();
     $( ".startdate" ).hide();
+    $( ".timeout" ).hide();
   },
 
   getInitialState: function () {
@@ -23,26 +24,47 @@ module.exports = React.createClass({
     this.history.push('/');
   },
 
+  timeOut: function () {
+    $( ".timeout" ).show();
+         setTimeout(function(){
+             $( ".timeout" ).fadeOut("linear");
+      }, 4000);
+  },
+  clearTimeOut: function (timer) {
+    clearTimeout(timer);
+  },
+  loading: function () {
+    $( ".loading" ).show();
+         setTimeout(function(){
+             $( ".loading" ).fadeOut("linear");
+      }, 2000);
+  },
+  startDate: function () {
+    $( ".startdate" ).show();
+         setTimeout(function(){
+             $( ".startdate" ).fadeOut("linear");
+      }, 2000);
+  },
+
   handleSubmit: function(event){
       var that = this;
       event.preventDefault();
 
       if (this.state.hashtag.length === 0 ||
-         this.state.from.length === 0 ||
-         this.state.to.length === 0 ) {
-      $( ".loading" ).show();
-           setTimeout(function(){
-               $( ".loading" ).fadeOut("linear");
-        }, 2000);
+          this.state.from.length === 0 ||
+          this.state.to.length === 0 ) {
+          this.loading();
      } else if (this.state.from > this.state.to) {
-       $( ".startdate" ).show();
-            setTimeout(function(){
-                $( ".startdate" ).fadeOut("linear");
-         }, 2000);
+        this.startDate();
      } else {
       var search = $.extend({}, this.state, {user_id: CURRENT_USER_ID});
-      ApiUtil.createSearch(search);
       ApiActions.loading();
+
+        var timer = setTimeout(function() {
+        that.timeOut();
+      }, 20000);
+
+      ApiUtil.createSearch(search, this.clearTimeOut, timer);
 
       this.setState({hashtag: "", from: "", to:""});
       this.refresh();
@@ -61,6 +83,7 @@ module.exports = React.createClass({
       </form>
        <div className='loading'>Please fill out all fields</div>
        <div className='startdate'>Start date must be before end date</div>
+       <div className='timeout'>Search timed out. Please try again.</div>
     </div>
 
     );

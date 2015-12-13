@@ -13,7 +13,7 @@ module.exports = {
   },
 
   loading: function(){
-  
+
     Dispatcher.dispatch({
       actionType: SearchConstants.LOADING,
     });

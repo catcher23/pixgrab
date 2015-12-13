@@ -30851,7 +30851,8 @@
 	module.exports = {
 	  SEARCHES_RECEIVED: "SEARCHES_RECEIVED",
 	  SEARCH_RECEIVED: "SEARCH_RECEIVED",
-	  LOADING: "LOADING"
+	  LOADING: "LOADING",
+	  TIMEOUT: "TIMEOUT"
 	};
 
 /***/ },
@@ -30861,7 +30862,7 @@
 	var ApiActions = __webpack_require__(232);
 	module.exports = {
 
-	  createSearch: function (search) {
+	  createSearch: function (search, callback, timer) {
 	    var timeOut = setTimeout(function () {
 	      ApiActions.loading();
 	    }, 20000);
@@ -30872,6 +30873,9 @@
 	      data: { search: search },
 	      success: function (search) {
 	        clearTimeout(timeOut);
+	        if (typeof callback === 'function') {
+	          callback(timer);
+	        }
 	        ApiActions.receiveSearch(search);
 	      }
 	    });
@@ -30899,6 +30903,16 @@
 	  },
 
 	  logout: function () {
+	    $.ajax({
+	      url: "/session/",
+	      method: "DELETE",
+	      success: function () {
+	        window.location.href = "/";
+	      }
+	    });
+	  },
+
+	  timeOut: function (clearTimeOut, timer) {
 	    $.ajax({
 	      url: "/session/",
 	      method: "DELETE",
@@ -31197,6 +31211,7 @@
 	  componentDidMount: function () {
 	    $(".loading").hide();
 	    $(".startdate").hide();
+	    $(".timeout").hide();
 	  },
 
 	  getInitialState: function () {
@@ -31207,24 +31222,45 @@
 	    this.history.push('/');
 	  },
 
+	  timeOut: function () {
+	    $(".timeout").show();
+	    setTimeout(function () {
+	      $(".timeout").fadeOut("linear");
+	    }, 4000);
+	  },
+	  clearTimeOut: function (timer) {
+	    clearTimeout(timer);
+	  },
+	  loading: function () {
+	    $(".loading").show();
+	    setTimeout(function () {
+	      $(".loading").fadeOut("linear");
+	    }, 2000);
+	  },
+	  startDate: function () {
+	    $(".startdate").show();
+	    setTimeout(function () {
+	      $(".startdate").fadeOut("linear");
+	    }, 2000);
+	  },
+
 	  handleSubmit: function (event) {
 	    var that = this;
 	    event.preventDefault();
 
 	    if (this.state.hashtag.length === 0 || this.state.from.length === 0 || this.state.to.length === 0) {
-	      $(".loading").show();
-	      setTimeout(function () {
-	        $(".loading").fadeOut("linear");
-	      }, 2000);
+	      this.loading();
 	    } else if (this.state.from > this.state.to) {
-	      $(".startdate").show();
-	      setTimeout(function () {
-	        $(".startdate").fadeOut("linear");
-	      }, 2000);
+	      this.startDate();
 	    } else {
 	      var search = $.extend({}, this.state, { user_id: CURRENT_USER_ID });
-	      ApiUtil.createSearch(search);
 	      ApiActions.loading();
+
+	      var timer = setTimeout(function () {
+	        that.timeOut();
+	      }, 20000);
+
+	      ApiUtil.createSearch(search, this.clearTimeOut, timer);
 
 	      this.setState({ hashtag: "", from: "", to: "" });
 	      this.refresh();
@@ -31257,6 +31293,11 @@
 	        'div',
 	        { className: 'startdate' },
 	        'Start date must be before end date'
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'timeout' },
+	        'Search timed out. Please try again.'
 	      )
 	    );
 	  }
