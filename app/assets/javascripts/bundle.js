@@ -31227,6 +31227,8 @@
 	    setTimeout(function () {
 	      $(".timeout").fadeOut("linear");
 	    }, 4000);
+
+	    ApiUtil.retrieveSearches(CURRENT_USER_ID);
 	  },
 	  clearTimeOut: function (timer) {
 	    clearTimeout(timer);
@@ -31237,6 +31239,7 @@
 	      $(".loading").fadeOut("linear");
 	    }, 2000);
 	  },
+
 	  startDate: function () {
 	    $(".startdate").show();
 	    setTimeout(function () {
@@ -31263,7 +31266,7 @@
 	      ApiUtil.createSearch(search, this.clearTimeOut, timer);
 
 	      this.setState({ hashtag: "", from: "", to: "" });
-	      this.refresh();
+	      // this.refresh();
 	    }
 	  },
 

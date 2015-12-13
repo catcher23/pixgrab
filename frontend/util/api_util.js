@@ -2,7 +2,10 @@ var ApiActions = require('../actions/api_actions.js');
 module.exports = {
 
 createSearch: function (search, callback, timer) {
-  var timeOut = setTimeout(function(){ApiActions.loading();}, 20000);
+  var timeOut = setTimeout(function(){
+    ApiActions.loading();
+
+  }, 20000);
 
   $.ajax({
     url: "/searches",

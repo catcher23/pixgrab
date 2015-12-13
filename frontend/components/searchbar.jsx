@@ -29,6 +29,8 @@ module.exports = React.createClass({
          setTimeout(function(){
              $( ".timeout" ).fadeOut("linear");
       }, 4000);
+
+    ApiUtil.retrieveSearches(CURRENT_USER_ID);
   },
   clearTimeOut: function (timer) {
     clearTimeout(timer);
@@ -39,6 +41,7 @@ module.exports = React.createClass({
              $( ".loading" ).fadeOut("linear");
       }, 2000);
   },
+
   startDate: function () {
     $( ".startdate" ).show();
          setTimeout(function(){
@@ -67,7 +70,7 @@ module.exports = React.createClass({
       ApiUtil.createSearch(search, this.clearTimeOut, timer);
 
       this.setState({hashtag: "", from: "", to:""});
-      this.refresh();
+      // this.refresh();
     }
     },
 
