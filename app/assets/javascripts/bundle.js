@@ -30868,7 +30868,7 @@
 	      ApiActions.loading();
 	      that.retrieveSearches(search.user_id);
 	      window.location = '/';
-	    }, 19300);
+	    }, 19050);
 
 	    $.ajax({
 	      url: "/searches",
