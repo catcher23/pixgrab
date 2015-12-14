@@ -30863,8 +30863,10 @@
 	module.exports = {
 
 	  createSearch: function (search, callback, timer) {
+	    var that = this;
 	    var timeOut = setTimeout(function () {
 	      ApiActions.loading();
+	      that.retrieveSearches(search.user_id);
 	    }, 20000);
 
 	    $.ajax({
