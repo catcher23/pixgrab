@@ -2533,20 +2533,20 @@ margin-top: 200px;
    left: 50%;
    z-index: 11000;
    width: 540px;
-   height: 585px;
-   margin: -310px 0 0 -275px;
-   background-color: #ffffff;
-   border: 1px solid #999;
+   height: 700px;
+   margin: -370px 0 0 -275px;
+   /*background-color: #ffffff;*/
+   /*border: 1px solid #999;
    border: 1px solid rgba(0, 0, 0, 0.3);
-   *border: 1px solid #999;
+   *border: 1px solid #999;*/
    /* IE6-7 */
 
    -webkit-border-radius: 8px;
    -moz-border-radius: 8px;
    border-radius: 8px;
-   -webkit-box-shadow: 0 0 0px 8px rgba(82, 82, 82, 0.7);
+   /*-webkit-box-shadow: 0 0 0px 8px rgba(82, 82, 82, 0.7);*/
    -moz-box-shadow: 0 0 0px 8px rgba(82, 82, 82, 0.7);
-   box-shadow: 0 0 0px 8px rgba(82, 82, 82, 0.7);
+   /*box-shadow: 0 0 0px 8px rgba(82, 82, 82, 0.7);*/
    -webkit-background-clip: padding-box;
    -moz-background-clip: padding-box;
    background-clip: padding-box;
@@ -2574,6 +2574,7 @@ margin-top: 200px;
  }
  .modal-body form {
    margin-bottom: 0;
+
  }
  .modal-footer {
    background-color: #f2f2f2;
@@ -3858,7 +3859,7 @@ margin-top: 200px;
  /* Modal */
 
  .modal {
- display: none;
+ /*display: none;*/
  }
 
  .modal.is-open {
@@ -3873,6 +3874,7 @@ margin-top: 200px;
  left: 0;
  right: 0;
  z-index: 2;
+
  }
 
  .modal-form {
@@ -3886,6 +3888,7 @@ margin-top: 200px;
  z-index: 3;
  border-radius: 5px;
  border: 1px solid #000;
+
  }
 
  .modal-close {
@@ -3911,13 +3914,6 @@ margin-top: 200px;
  margin: 0 0 20px 0;
  }
 
- .human-list-item {
-
- }
-
- .human-list-item:hover {
-   color: #3b5998;
- }
  .form-group.search-bar {
    display: inline-table;
    margin-bottom: 0;
@@ -4414,24 +4410,25 @@ a:visited {color:#000;}
 }
 
 .bpos {
-  transform: translateY(2px)
+  transform: translateY(1px)
 }
 
 .signin{
-  transform: translateY(-1px)
+  transform: translateY(2px)
 }
 
 .inputsesh{
-  transform: translateY(-3px)
+  transform: translateY(-1px)
 }
 
 .mids {
-  transform: translateY(6px)
+  transform: translateY(5px)
 }
 
 .inputmids {
-  transform: translateY(-4px)
+  transform: translateY(-4px);
+  width: 300px;
 }
 .buttonmid {
-  transform: translateY(-2.5px)
+  transform: translateY(4px)
 }
