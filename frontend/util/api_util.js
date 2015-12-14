@@ -7,7 +7,6 @@ createSearch: function (search, callback, timer) {
     method: "POST",
     data: {search: search},
     success: function (search) {
-      clearTimeout(timeOut);
       if (typeof callback === 'function') {
              callback(timer);
         }
@@ -15,6 +14,8 @@ createSearch: function (search, callback, timer) {
     }
   });
 },
+
+
 deleteSearch: function (search_id) {
   $.ajax({
     url: "/searches",

@@ -57,9 +57,11 @@ var SearchIndexItem = require('./indexItem.jsx');
 
           {all_searches.map(function (search) {
             albumCounter += 1;
+            if (search.query !== null) {
             return <SearchIndexItem key={search.id} search={search}
                     all_searches={all_searches} albumView = {that.albumView}
                     albumCounter = {albumCounter}/>;
+                  }
               })
             })
         </ul>

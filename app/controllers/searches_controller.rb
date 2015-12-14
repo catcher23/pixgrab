@@ -6,10 +6,10 @@ class SearchesController < ApplicationController
       from = DateTime.parse(params['search']['from'])
       to = DateTime.parse(params['search']['to'])
       hashtag = params['search']['hashtag']
-      search.check(User.find(search.user_id).searches)
       resultsHash = search.generate_results(search, client, from, to, hashtag)
       search.query = JSON.generate(resultsHash.keys)
       search.save
+      search.check(User.find(search.user_id).searches)
       all_searches = User.find(search.user_id).searches
 
       render json: {search: search, all_searches: all_searches}

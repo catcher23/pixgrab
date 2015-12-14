@@ -30868,7 +30868,6 @@
 	      method: "POST",
 	      data: { search: search },
 	      success: function (search) {
-	        clearTimeout(timeOut);
 	        if (typeof callback === 'function') {
 	          callback(timer);
 	        }
@@ -30876,6 +30875,7 @@
 	      }
 	    });
 	  },
+
 	  deleteSearch: function (search_id) {
 	    $.ajax({
 	      url: "/searches",
@@ -31015,9 +31015,11 @@
 	        { className: 'topic albums' },
 	        all_searches.map(function (search) {
 	          albumCounter += 1;
-	          return React.createElement(SearchIndexItem, { key: search.id, search: search,
-	            all_searches: all_searches, albumView: that.albumView,
-	            albumCounter: albumCounter });
+	          if (search.query !== null) {
+	            return React.createElement(SearchIndexItem, { key: search.id, search: search,
+	              all_searches: all_searches, albumView: that.albumView,
+	              albumCounter: albumCounter });
+	          }
 	        }),
 	        ')'
 	      ),
