@@ -30863,13 +30863,6 @@
 	module.exports = {
 
 	  createSearch: function (search, callback, timer) {
-	    var that = this;
-	    var timeOut = setTimeout(function () {
-	      ApiActions.loading();
-	      that.retrieveSearches(search.user_id);
-	      window.location = '/';
-	    }, 19050);
-
 	    $.ajax({
 	      url: "/searches",
 	      method: "POST",
@@ -30900,6 +30893,7 @@
 	      method: "GET",
 	      data: { id: id },
 	      success: function (searches) {
+
 	        ApiActions.receiveSearch(searches);
 	      }
 	    });
@@ -30954,6 +30948,7 @@
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(231);
 	var ApiActions = __webpack_require__(232);
@@ -31263,7 +31258,7 @@
 	      ApiActions.loading();
 	      var timer = setTimeout(function () {
 	        that.timeOut();
-	      }, 21000);
+	      }, 20000);
 
 	      ApiUtil.createSearch(search, this.clearTimeOut, timer);
 

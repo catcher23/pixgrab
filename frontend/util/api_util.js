@@ -2,13 +2,6 @@ var ApiActions = require('../actions/api_actions.js');
 module.exports = {
 
 createSearch: function (search, callback, timer) {
-  var that = this;
-  var timeOut = setTimeout(function(){
-    ApiActions.loading();
-    that.retrieveSearches(search.user_id);
-    window.location = '/';
-  }, 19050);
-
   $.ajax({
     url: "/searches",
     method: "POST",
@@ -39,6 +32,7 @@ retrieveSearches: function (id) {
     method: "GET",
     data: {id: id},
     success: function (searches) {
+
       ApiActions.receiveSearch(searches);
     }
   });

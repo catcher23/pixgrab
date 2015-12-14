@@ -4183,7 +4183,7 @@ a:visited {color:#000;}
 {position:absolute; left:-50px; top:-32px; width:200px; height:150px; border-color:#fff;}
 
 .loading {
-  margin-top: 56px;
+  margin-top: 55px;
   position: fixed;
   width: 100%;
   padding-top: 2px;
@@ -4200,7 +4200,7 @@ a:visited {color:#000;}
   font-size: 20;
 }
 .startdate {
-  margin-top: 56px;
+  margin-top: 55px;
   position: fixed;
   width: 100%;
   padding-top: 2px;
@@ -4217,7 +4217,7 @@ a:visited {color:#000;}
   font-size: 20;
 }
 .timeout {
-  margin-top: 56px;
+  margin-top: 55px;
   position: fixed;
   width: 100%;
   padding-top: 2px;

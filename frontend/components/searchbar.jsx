@@ -64,7 +64,7 @@ module.exports = React.createClass({
       ApiActions.loading();
         var timer = setTimeout(function() {
         that.timeOut();
-      }, 21000);
+      }, 20000);
 
       ApiUtil.createSearch(search, this.clearTimeOut, timer);
 
