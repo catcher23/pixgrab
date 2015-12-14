@@ -4426,8 +4426,8 @@ a:visited {color:#000;}
 }
 
 .inputmids {
-  transform: translateY(-4px);
-  width: 300px;
+  transform: translateY(-1px);
+  width: 120px;
 }
 .buttonmid {
   transform: translateY(4px)
