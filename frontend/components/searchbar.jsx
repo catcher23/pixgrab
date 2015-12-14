@@ -62,10 +62,9 @@ module.exports = React.createClass({
      } else {
       var search = $.extend({}, this.state, {user_id: CURRENT_USER_ID});
       ApiActions.loading();
-
         var timer = setTimeout(function() {
         that.timeOut();
-      }, 20000);
+      }, 21000);
 
       ApiUtil.createSearch(search, this.clearTimeOut, timer);
 

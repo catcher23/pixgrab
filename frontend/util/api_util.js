@@ -6,7 +6,7 @@ createSearch: function (search, callback, timer) {
   var timeOut = setTimeout(function(){
     ApiActions.loading();
     that.retrieveSearches(search.user_id);
-    
+    window.location = '/';
   }, 20000);
 
   $.ajax({
